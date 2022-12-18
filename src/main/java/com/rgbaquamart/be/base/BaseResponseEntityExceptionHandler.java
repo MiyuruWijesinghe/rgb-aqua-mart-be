@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
 import com.rgbaquamart.be.exceptions.NoRecordFoundException;
+import com.rgbaquamart.be.exceptions.UserNotFound;
 import com.rgbaquamart.be.exceptions.ValidateRecordException;
+import com.rgbaquamart.be.resource.BrandResource;
 import com.rgbaquamart.be.resource.MessageResponseResource;
-import com.rgbaquamart.be.resource.ShopResource;
 import com.rgbaquamart.be.resource.ValidateResource;
 
 
@@ -48,6 +50,13 @@ public class BaseResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		messageResponseResource.setMessage(ex.getMessage());
 		return new ResponseEntity<>(messageResponseResource, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
+	
+	@ExceptionHandler({UserNotFound.class})
+    public ResponseEntity<Object> userNotFoundException(UserNotFound ex, WebRequest request) {
+		MessageResponseResource messageResponseResource = new MessageResponseResource();
+        messageResponseResource.setMessage(ex.getMessage());
+        return new ResponseEntity<>(messageResponseResource, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 	
 	@ExceptionHandler({ValidateRecordException.class})
 	public ResponseEntity<Object> validateRecordException(ValidateRecordException ex, WebRequest request) {
@@ -80,13 +89,14 @@ public class BaseResponseEntityExceptionHandler extends ResponseEntityExceptionH
 			String className=ex.getBindingResult().getObjectName();
 			switch(className){ 
         		
-        	case "shopResource": 
-        		ShopResource shopResource = new ShopResource();
+        	case "brandResource": 
+        		BrandResource brandResource = new BrandResource();
 				for (FieldError error : ex.getBindingResult().getFieldErrors()) {
-					sField =  shopResource.getClass().getDeclaredField(error.getField());
+					sField =  brandResource.getClass().getDeclaredField(error.getField());
 		            sField.setAccessible(true);
-		            sField.set(shopResource.getClass().cast(shopResource), error.getDefaultMessage());
+		            sField.set(brandResource.getClass().cast(brandResource), error.getDefaultMessage());
 				}
+				return new ResponseEntity<>(brandResource, HttpStatus.UNPROCESSABLE_ENTITY);
 	        default:   
 	        	return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 	        }
