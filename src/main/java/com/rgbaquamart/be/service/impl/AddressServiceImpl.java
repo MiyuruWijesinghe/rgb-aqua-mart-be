@@ -1,5 +1,12 @@
 package com.rgbaquamart.be.service.impl;
 
-public class AddressServiceImpl {
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rgbaquamart.be.service.AddressService;
+
+@Component
+@Transactional(rollbackFor=Exception.class)
+public class AddressServiceImpl implements AddressService {
 
 }

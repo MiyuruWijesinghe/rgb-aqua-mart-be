@@ -2,5 +2,30 @@ databaseChangeLog:
     - include:
         file: "db/changelog/changes/sequence.yml"
     - include:
-        file: "/db/changelog/changes/brand.yml"    
+        file: "/db/changelog/changes/shop.yml" 
+    - include:
+        file: "/db/changelog/changes/brand.yml"  
+    - include:
+        file: "/db/changelog/changes/category.yml" 
+    - include:
+        file: "/db/changelog/changes/sub_category.yml" 
+    - include:
+        file: "/db/changelog/changes/attribute.yml"     
+    - include:
+        file: "/db/changelog/changes/item.yml" 
+    - include:
+        file: "/db/changelog/changes/attribute_value.yml"  
+    - include:
+        file: "/db/changelog/changes/special_instructions.yml"
+    - include:
+        file: "/db/changelog/changes/role.yml" 
+    - include:
+        file: "/db/changelog/changes/user.yml"
+    - include:
+        file: "/db/changelog/changes/user_identification.yml" 
+    - include:
+        file: "/db/changelog/changes/contact.yml"    
+    - include:
+        file: "/db/changelog/changes/address.yml"                   
+                          
     

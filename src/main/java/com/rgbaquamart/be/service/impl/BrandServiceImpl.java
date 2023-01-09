@@ -62,7 +62,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	@Override
-	public Brand addBrand(BrandResource brandResource) {
+	public Brand add(BrandResource brandResource) {
         if(brandRepository.existsByName(brandResource.getName())) {
         	throw new ValidateRecordException(environment.getProperty("common.duplicate"), "name");
         }
@@ -79,7 +79,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	@Override
-	public Brand updateBrand(Long id, BrandResource brandResource) {
+	public Brand update(Long id, BrandResource brandResource) {
 		Optional<Brand> isPresentBrand = brandRepository.findById(id);
 		if (!isPresentBrand.isPresent()) 
 			throw new ValidateRecordException(environment.getProperty("common.record-not-found"), "message");
@@ -100,7 +100,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	@Override
-	public String deleteBrand(Long id) {
+	public String delete(Long id) {
 		Optional<Brand> isPresentBrand = brandRepository.findById(id);
 		if (!isPresentBrand.isPresent()) {
 			throw new ValidateRecordException(environment.getProperty("common.record-not-found"), "message");

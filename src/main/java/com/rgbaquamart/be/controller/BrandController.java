@@ -95,7 +95,7 @@ public class BrandController {
 	public ResponseEntity<Object> addBrand(@Valid @RequestBody BrandResource brandResource) {
 		if (LogginAuthentcation.getUserName() == null || LogginAuthentcation.getUserName().isEmpty())
 			throw new UserNotFound(environment.getProperty("common.user-not-found"));
-		Brand brand = brandService.addBrand(brandResource);
+		Brand brand = brandService.add(brandResource);
 		MessageResponseResource messageResponseResource = new MessageResponseResource(environment.getProperty("common.saved"), brand);
 		return new ResponseEntity<>(messageResponseResource, HttpStatus.CREATED);
 	}
@@ -106,7 +106,7 @@ public class BrandController {
 											  @Valid @RequestBody BrandResource brandResource) {
 		if (LogginAuthentcation.getUserName() == null || LogginAuthentcation.getUserName().isEmpty())
 			throw new UserNotFound(environment.getProperty("common.user-not-found"));
-		Brand brand = brandService.updateBrand(id, brandResource);
+		Brand brand = brandService.update(id, brandResource);
 		MessageResponseResource messageResponseResource = new MessageResponseResource(environment.getProperty("common.updated"), brand);
 		return new ResponseEntity<>(messageResponseResource, HttpStatus.OK);
 	}
@@ -114,7 +114,7 @@ public class BrandController {
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Object> deleteBrand(@PathVariable(value = "id", required = true) Long id) {
-		String message = brandService.deleteBrand(id);
+		String message = brandService.delete(id);
 		MessageResponseResource messageResponseResource = new MessageResponseResource(message);
 		return new ResponseEntity<>(messageResponseResource, HttpStatus.OK);
 	}

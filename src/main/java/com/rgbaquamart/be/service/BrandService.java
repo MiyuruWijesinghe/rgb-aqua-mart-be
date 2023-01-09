@@ -25,11 +25,11 @@ public interface BrandService {
 	List<Brand> findByStatus(String status);
 	
 	
-	Brand addBrand(BrandResource brandResource);
+	Brand add(BrandResource brandResource);
 
 	
-	Brand updateBrand(Long id, BrandResource brandResource);
+	Brand update(Long id, BrandResource brandResource);
 	
 	
-	String deleteBrand(Long id);
+	String delete(Long id);
 }

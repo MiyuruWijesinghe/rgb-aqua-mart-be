@@ -1,0 +1,91 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: MiyuruW
+      changes: 
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true 
+              - column:
+                  name: entity_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: entity_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: postal_code
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address_1
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address_2
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address_3
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address_4
+                  type: varchar(50)
+                  constraints:
+                    nullable: true      
+              - column:
+                  name: country
+                  type: varchar(50)
+                  constraints:
+                    nullable: true                              
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
