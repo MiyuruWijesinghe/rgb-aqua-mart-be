@@ -15,7 +15,7 @@ public class CategoryResource {
 	private String logoURL;
 	
 	@NotBlank(message = "{common.not-null}")
-	@Pattern(regexp = "^$|ACTIVE|INACTIVE",message="{common-status.pattern}")
+	@Pattern(regexp = "^$|Active|Inactive",message="{common-status.pattern}")
 	private String status;
 
 	public String getName() {
